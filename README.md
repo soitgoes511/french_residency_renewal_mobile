@@ -32,4 +32,11 @@ If you strictly require an `.apk` file to install:
 *   `index.html`: The main app entry point.
 *   `styles.css`: The visual design.
 *   `app_offline.js`: The application logic (replaces the Python backend).
-*   `config.js`: Contains all the permit requirements and document lists (generated from your YAML files).
+*   `config.js`: Contains all the permit requirements and documents (generated from your YAML files).
+
+## How Offline Works (Technical)
+This app uses a **Service Worker** (`service-worker.js`) to provide offline support.
+1.  **Caching:** On the first visit, the service worker downloads and saves all core files (`index.html`, `styles.css`, etc.) into the browser's Cache Storage.
+2.  **Interception:** When you reload the page, the service worker intercepts the network request. If the file is in the cache, it serves it directly from your phone, bypassing the network entirely.
+3.  **Persistence:** Because the files are stored locally on your device, the app **will continue to work** even if the original website goes down or is deleted. It is effectively "installed" on your device.
+
