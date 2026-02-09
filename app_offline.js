@@ -529,9 +529,68 @@ function formatDate(dateStr) {
     return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
+// Data Management
+function exportData() {
+    const data = {
+        settings: userSettings,
+        status: documentStatus,
+        timestamp: new Date().toISOString(),
+        version: 1
+    };
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "residence_tracker_backup_" + new Date().toISOString().slice(0, 10) + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
+function importData(inputElement) {
+    const file = inputElement.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = JSON.parse(e.target.result);
+
+            if (data.settings && data.status) {
+                userSettings = data.settings;
+                documentStatus = data.status;
+                selectedProfiles = userSettings.selected_profiles || ['common'];
+
+                // Save to local storage
+                savePersistedData();
+
+                // Refresh UI
+                if (userSettings.selected_permit_type) {
+                    permitTypeSelect.value = userSettings.selected_permit_type;
+                    handlePermitTypeChange({ target: permitTypeSelect });
+                } else {
+                    location.reload();
+                }
+
+                alert('Backup restored successfully!');
+            } else {
+                throw new Error('Invalid backup file format');
+            }
+        } catch (error) {
+            console.error('Import failed:', error);
+            alert('Failed to restore backup: ' + error.message);
+        }
+        // Reset input
+        inputElement.value = '';
+    };
+    reader.readAsText(file);
+}
+
 // Global Exports
 window.closeNotesModal = closeNotesModal;
 window.saveNotes = saveNotes;
+window.exportData = exportData;
+window.importData = importData;
 
 // Start
 document.addEventListener('DOMContentLoaded', init);

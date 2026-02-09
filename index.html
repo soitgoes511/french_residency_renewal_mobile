@@ -63,6 +63,25 @@
                 </div>
             </section>
 
+            <!-- Data Management Section -->
+            <section id="dataSection" class="data-section card">
+                <h2>Data Management</h2>
+                <p class="section-subtitle">Backup your progress or restore from a file</p>
+                <div class="data-controls">
+                    <button id="exportBtn" class="btn-secondary" onclick="exportData()">
+                        💾 Download Backup
+                    </button>
+                    <div style="display:inline-block">
+                        <input type="file" id="importInput" accept=".json" style="display: none"
+                            onchange="importData(this)">
+                        <button id="importBtn" class="btn-secondary"
+                            onclick="document.getElementById('importInput').click()">
+                            📂 Restore Backup
+                        </button>
+                    </div>
+                </div>
+            </section>
+
             <!-- Documents Checklist -->
             <section id="documentsSection" class="documents-section hidden">
                 <h2>Required Documents</h2>

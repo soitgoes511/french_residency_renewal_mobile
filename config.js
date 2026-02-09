@@ -80,7 +80,7 @@ window.APP_CONFIG = {
             "id": "carte_resident",
             "name_en": "EU Long-Term Resident Card (10 years)",
             "name_fr": "Carte de Résident de Longue Durée-UE",
-            "description": "A 10-year residence card for foreigners who have lived legally in France for at least 5 years.",
+            "description": "10-year residence card. Requires 3 years of residence for spouses of French citizens, 5 years otherwise.",
             "official_url": "https://www.service-public.fr/particuliers/vosdroits/F17359",
             "cost": 225,
             "last_verified": "2026-02-07"
@@ -155,9 +155,9 @@ window.APP_CONFIG = {
                     "common"
                 ],
                 "category": "residence",
-                "name_fr": "Justificatifs de séjour régulier (5 ans)",
-                "name_en": "Proof of Legal Residence (5 years)",
-                "description": "Previous residence permits, renewal receipts, school certificates, tax notices proving continuous legal residence.",
+                "name_fr": "Justificatifs de séjour (3 ou 5 ans)",
+                "name_en": "Proof of Residence (3 or 5 years)",
+                "description": "Previous permits, renewal receipts, etc. proving continuous legal residence (3 years for spouses of French citizens, 5 years otherwise).",
                 "link": null,
                 "link_text": "Gather from your records",
                 "validity_days": null
@@ -168,9 +168,9 @@ window.APP_CONFIG = {
                     "common"
                 ],
                 "category": "financial",
-                "name_fr": "Justificatifs de ressources (5 dernières années)",
-                "name_en": "Proof of Resources (last 5 years)",
-                "description": "Pay slips, tax notices (avis d'imposition), pension statements, employment contracts. Social benefits are excluded.",
+                "name_fr": "Justificatifs de ressources (3 ou 5 ans)",
+                "name_en": "Proof of Resources (3 or 5 years)",
+                "description": "Pay slips, tax notices, pension statements, etc. for the last 3 years (spouses) or 5 years (others).",
                 "link": "https://www.impots.gouv.fr/",
                 "link_text": "Tax portal (avis d'imposition)",
                 "validity_days": null
